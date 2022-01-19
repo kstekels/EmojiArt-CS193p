@@ -16,6 +16,7 @@
 		15CC0C8C2797FFB4008D0E70 /* EmojiArtDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CC0C8B2797FFB4008D0E70 /* EmojiArtDocument.swift */; };
 		15CC0C8E279809FC008D0E70 /* UtilityExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CC0C8D279809FB008D0E70 /* UtilityExtensions.swift */; };
 		15CC0C9027981D70008D0E70 /* UtilityViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CC0C8F27981D70008D0E70 /* UtilityViews.swift */; };
+		15CC0C9227985953008D0E70 /* PaletteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CC0C9127985953008D0E70 /* PaletteStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		15CC0C8B2797FFB4008D0E70 /* EmojiArtDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiArtDocument.swift; sourceTree = "<group>"; };
 		15CC0C8D279809FB008D0E70 /* UtilityExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilityExtensions.swift; sourceTree = "<group>"; };
 		15CC0C8F27981D70008D0E70 /* UtilityViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilityViews.swift; sourceTree = "<group>"; };
+		15CC0C9127985953008D0E70 /* PaletteStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				15CC0C7B2797F81A008D0E70 /* EmojiArtDocumentView.swift */,
 				15CC0C872797F93C008D0E70 /* EmojiArtModel.swift */,
 				15CC0C8B2797FFB4008D0E70 /* EmojiArtDocument.swift */,
+				15CC0C9127985953008D0E70 /* PaletteStore.swift */,
 				15CC0C892797FC48008D0E70 /* EmojiArModel.Background.swift */,
 				15CC0C8D279809FB008D0E70 /* UtilityExtensions.swift */,
 				15CC0C8F27981D70008D0E70 /* UtilityViews.swift */,
@@ -153,6 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15CC0C9027981D70008D0E70 /* UtilityViews.swift in Sources */,
+				15CC0C9227985953008D0E70 /* PaletteStore.swift in Sources */,
 				15CC0C7C2797F81A008D0E70 /* EmojiArtDocumentView.swift in Sources */,
 				15CC0C7A2797F81A008D0E70 /* EmojiArtApp.swift in Sources */,
 				15CC0C8E279809FC008D0E70 /* UtilityExtensions.swift in Sources */,
