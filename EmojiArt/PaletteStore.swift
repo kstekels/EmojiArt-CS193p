@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Palette: Identifiable, Codable {
+struct Palette: Identifiable, Codable, Hashable {
     var name: String
     var emojis: String
     var id: Int
@@ -19,7 +19,7 @@ struct Palette: Identifiable, Codable {
     }
 }
 
-class PalettStore: ObservableObject {
+class PaletteStore: ObservableObject {
     let name: String
     
     @Published var palettes = [Palette]() {
@@ -47,7 +47,6 @@ class PalettStore: ObservableObject {
         self.name = name
         restoreFromUserDefaults()
         if palettes.isEmpty {
-            print("Default palettes")
             insertPalette(named: "Vehicles", emojis: "🚙🚗🚘🚕🚖🏎🚚🛻🚛🚐🚓🚔🚑🚒🚀✈️🛫🛬🛩🚁🛸🚲🏍🛶⛵️🚤🛥🛳⛴🚢🚂🚝🚅🚆🚊🚉🚇🛺🚜")
             insertPalette(named: "Sports", emojis: "🏈⚾️🏀⚽️🎾🏐🥏🏓⛳️🥅🥌🏂⛷🎳")
             insertPalette(named: "Music", emojis: "🎼🎤🎹🪘🥁🎺🪗🪕🎻")

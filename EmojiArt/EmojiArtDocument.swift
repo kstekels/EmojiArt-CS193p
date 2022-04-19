@@ -42,20 +42,17 @@ class EmojiArtDocument: ObservableObject
     }
     
     private func save(to url: URL) {
-        let funcDescription = String(describing: self)
-        let thisFunction = "\(funcDescription).\(#function)"
+        let thisfunction = "\(String(describing: self)).\(#function)"
         do {
             let data: Data = try emojiArt.json()
-            print("\(thisFunction) json = \(String(data: data, encoding: .utf8) ?? "nil")")
+            print("\(thisfunction) json = \(String(data: data, encoding: .utf8) ?? "nil")")
             try data.write(to: url)
-            print("\(thisFunction) success!")
-        }catch let EncodingError where EncodingError is EncodingError {
-            print("\(thisFunction) couldn't encode EmojiArt as JSON because \(EncodingError.localizedDescription)")
+            print("\(thisfunction) success!")
+        } catch let encodingError where encodingError is EncodingError {
+            print("\(thisfunction) couldn't encode EmojiArt as JSON because \(encodingError.localizedDescription)")
+        } catch {
+            print("\(thisfunction) error = \(error)")
         }
-        catch {
-            print("\(thisFunction) error = \(error)")
-        }
-        
     }
     
     init() {
@@ -65,26 +62,26 @@ class EmojiArtDocument: ObservableObject
         } else {
             emojiArt = EmojiArtModel()
         }
-        
     }
     
     var emojis: [EmojiArtModel.Emoji] { emojiArt.emojis }
     var background: EmojiArtModel.Background { emojiArt.background }
     
     // MARK: - Background
+    
     @Published var backgroundImage: UIImage?
     @Published var backgroundImageFetchStatus = BackgroundImageFetchStatus.idle
     
-    enum BackgroundImageFetchStatus {
+    enum BackgroundImageFetchStatus: Equatable {
         case idle
         case fetching
+        case failed(URL)
     }
     
     private func fetchBackgroundImageDataIfNecessary() {
         backgroundImage = nil
         switch emojiArt.background {
         case .url(let url):
-            // fetch the url
             backgroundImageFetchStatus = .fetching
             DispatchQueue.global(qos: .userInitiated).async {
                 let imageData = try? Data(contentsOf: url)
@@ -93,6 +90,9 @@ class EmojiArtDocument: ObservableObject
                         self?.backgroundImageFetchStatus = .idle
                         if imageData != nil {
                             self?.backgroundImage = UIImage(data: imageData!)
+                        }
+                        if self?.backgroundImage == nil {
+                            self?.backgroundImageFetchStatus = .failed(url)
                         }
                     }
                 }
@@ -108,7 +108,6 @@ class EmojiArtDocument: ObservableObject
     
     func setBackground(_ background: EmojiArtModel.Background) {
         emojiArt.background = background
-        print("Background set tp \(background)")
     }
     
     func addEmoji(_ emoji: String, at location: (x: Int, y: Int), size: CGFloat) {
@@ -116,14 +115,14 @@ class EmojiArtDocument: ObservableObject
     }
     
     func moveEmoji(_ emoji: EmojiArtModel.Emoji, by offset: CGSize) {
-        if let index = emojiArt.emojis.firstIndex(of: emoji) {
+        if let index = emojiArt.emojis.index(matching: emoji) {
             emojiArt.emojis[index].x += Int(offset.width)
             emojiArt.emojis[index].y += Int(offset.height)
         }
     }
     
     func scaleEmoji(_ emoji: EmojiArtModel.Emoji, by scale: CGFloat) {
-        if let index = emojiArt.emojis.firstIndex(of: emoji) {
+        if let index = emojiArt.emojis.index(matching: emoji) {
             emojiArt.emojis[index].size = Int((CGFloat(emojiArt.emojis[index].size) * scale).rounded(.toNearestOrAwayFromZero))
         }
     }

@@ -1,5 +1,5 @@
 //
-//  EmojiArModel.Background.swift
+//  EmojiArtModel.Background.swift
 //  EmojiArt
 //
 //  Created by karlis.stekels on 19/01/2022.
@@ -56,4 +56,3 @@ extension EmojiArtModel {
         }
     }
 }
-
